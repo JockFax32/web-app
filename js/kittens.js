@@ -7,12 +7,15 @@ Parse.initialize('S7SwwjBTgEyZnJjjZ6V9YB5HItXoT3alIxzEQCKi','izqCDsoySYLvJ9nsPlC
 var Kittens = Parse.Object.extend('Kittens');
 
 $('form').submit(function(){
+    
     var kittens = new Kittens();
 
-    $(this).find('input').each(function(){
-        kittens.set($(this).attr('id'),$(this).val())
-        $(this).val('');
-    });
+    kittens.set('review-title' , $("#review-title").val());
+
+    // $(this).find('input').each(function(){
+    //     kittens.set($(this).attr('id'),$(this).val())
+    //     $(this).val('');
+    // });
 
     kittens.save(null,{
         success:function(){
@@ -26,20 +29,33 @@ $('form').submit(function(){
 var getData = function (){
     var query = new Parse.Query(Kittens);
 
+    query.notEqualTo('review-text','');
+
 
     query.find({
         success:function(response){
             buildList(response);
         }
     });
+}
 
+var buildList = function (data){
+    $('ol').empty();
 
-
-
-
+    data.forEach(function(d){
+        addItem;
+    })
 
 }
 
-var buildList = function (data){}
+var addItem = function (item){
+    var title = item.get('review-title');
+    var review = item.get ('review-text');
 
-var addItem = function (item){}
+    var li = $('<li>Title: ' + title + 'Text: ' + review + '</li>');
+
+    
+
+}
+
+getData();
