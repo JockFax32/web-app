@@ -9,23 +9,33 @@ Parse.initialize('S7SwwjBTgEyZnJjjZ6V9YB5HItXoT3alIxzEQCKi','izqCDsoySYLvJ9nsPlC
 var Kittens = Parse.Object.extend('Kittens');
 
 $('#star').raty({
-    cancel: true
+   
 });
 
 $('form').submit(function(){
 
     var kittens = new Kittens();
+    
+    var numStars = $("#star").raty('score');
+
+
+    kittens.set('stars',numStars);
 
     $(this).find('.form-control').each(function(){
         kittens.set($(this).attr('id'),$(this).val())
         $(this).val('');
-    });
 
-    kittes.set('stars',$("#star").raty());
+    });
 
     kittens.save(null,{
         success:function(){
             getData();
+            // console.log(($("#star").raty('score')));
+            console.log(numStars);
+
+
+
+                // + ' ' + parseInt($("#star"),10));
         }
     });
 
@@ -47,7 +57,7 @@ var getData = function (){
 }
 
 var buildList = function (data){
-    console.log('buildList: ' , data);
+    // console.log('buildList: ' , data);
     $('ol').empty();
     
     data.forEach(function(d){
