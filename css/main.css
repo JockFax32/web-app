@@ -1,5 +1,6 @@
 /*CSS File for CRUD Challenged*/
 @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
 
 /*Red Background #6E0308*/
 /*Gray Background #222 */
@@ -19,6 +20,7 @@ legend{
     border-radius: 5px;
     margin-bottom: 1em;
 }
+
 
 /*Change layout for Mobile*/ 
 @media screen and (min-width:768px){
