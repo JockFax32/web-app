@@ -8,6 +8,10 @@ Parse.initialize('S7SwwjBTgEyZnJjjZ6V9YB5HItXoT3alIxzEQCKi','izqCDsoySYLvJ9nsPlC
 
 var Kittens = Parse.Object.extend('Kittens');
 
+$('#star').raty({
+    cancel: true
+});
+
 $('form').submit(function(){
 
     var kittens = new Kittens();
@@ -17,7 +21,7 @@ $('form').submit(function(){
         $(this).val('');
     });
 
-    // kittes.set('stars',$("#star").raty());
+    kittes.set('stars',$("#star").raty());
 
     kittens.save(null,{
         success:function(){
