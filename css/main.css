@@ -7,7 +7,7 @@
 /*Font Color #EFEFEF*/
 
 body{
-    font-size: 16px;
+    font-size: 2em;
     font-family: "bebasneue", Georgia, Times, Arial;
 /*    color: #EFEFEF;
 */
@@ -25,15 +25,33 @@ h1{
     1px -1px 0 #000,
     -1px 1px 0 #000,
      1px 1px 0 #000;
-   font-size: 100%;
+  text-align: center;
+} 
+h3{
+  margin-top: 0px;
+  font-size: 1.5em; 
 }
 
+#thumbs{
+  font-size: .75em;
+}
+
+#starReview{
+  font-size: .75em;
+}
+#feedback{
+  font-size: .4em;
+}
+
+.jumbotron{
+  padding:0;
+}
+
+.btn-danger{
+  font-size: .5em;
+}
 #header{
-	min-height: 200px;
-	background-size: 100%;
-	margin-bottom: 1em;
-	background-image: url("../img/kittens.jpg");
-	background-repeat: no-repeat;
+  float: right;
 }
 .form-group{
 	margin-bottom: 0px;
@@ -41,25 +59,16 @@ h1{
 #list{
 	padding-left: 0px;
 }
-#title{
-/*	background-color: #222;
-*/}
 #user-review{
-/*	background-color:#6E0308;
-*/}
-#past-reviews{
-/*	background-color:#222;  
-*/}
-
+  font-size:1em; 
+}
 /*Change layout for Mobile*/ 
 @media screen and (min-width:768px){
  	body{
-    	font-size:20px;
+    	font-size:2em;
     }
-    #header{
-    	min-height: 410px;
-    	margin-bottom: 0px;
-    }
-
-
+  #feedback{
+    font-size: .6em;
+  }
+ 
 }    

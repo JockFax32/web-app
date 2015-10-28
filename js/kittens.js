@@ -12,6 +12,7 @@ $('#starInput').raty({
 });
 
 
+
 $('form').submit(function(){
 
     var kittens = new Kittens();
@@ -43,36 +44,100 @@ var getData = function (){
         }
     });
 }
-
+// Gather data from query 
 var buildList = function (data){
     $('ol').empty();
     data.forEach(function(d){
         addItem(d);
     })
 }
-
+// Add past reviews with popularity ratings
 var addItem = function (item){
+    //Get Parse data
     var rating = item.get('stars');
     var title = item.get('reviewTitle');
     var review = item.get ('reviewText');
+    var likes = item.get('likes');
+    var dislikes=item.get('dislikes');
+    var avScore = 0;
     
-    // $('#starReview').raty({
+    //Sets new posts to 0  
+    if(likes==undefined){
+        likes = 0; 
+    };
+    if (dislikes==undefined){
+        dislikes = 0;
+    }
+    
+    var well =$('<div class="well well-sm"><div class ="row"><div class="col-xs-4 ratyStars"/><div class="col-xs-6 header"><h3>'
+                + title +'</h3></div>'+ '<div class="col-xs-2 theThumbs"></div></div>'+
+                '<p>'+review +'</p>'+
+                '<p id= "feedback">' + likes + " people enjoyed this reivew and "+ dislikes + " people hated it." + '</p>' +
+                '</div>');
+    var pastReview = $('<div id="starReview">').raty({
+        score: rating,
+        readOnly: true
+    });
+    var button = $('<button class="btn-xs btn-danger"><span  class ="glyphicon  glyphicon-remove"></span></button>');
+    button.on('click',function(){
+        item.destroy({
+            success: function(){
+                getData()
+            }
+        });
 
-    // var well =$('<div class="well well-sm"><div id="starReview"><h3>'
-    //             + title +'</h3>'+
-    //             '<p>'+review +'</p>'+ 
-    //             '</div>');
-    var pastReveiw =$('<div id="starReview">'+($('#starReview').raty())+'</div>');
+    })
+
+    var thumbsUp = $('<button class ="glyphicon glyphicon-thumbs-up" id="thumbs"></button>');
+    thumbsUp.on('click',function(){
+        item.increment("likes");
+        item.save({
+            success: function(){
+                getData()
+            }});
+    });
+    var thumbsDown = $('<button class= "glyphicon glyphicon-thumbs-down" id ="thumbs"></button>');
+    thumbsDown.on('click', function(){
+        item.increment("dislikes");
+        item.save({
+            success: function(){
+                getData()
+            }});
+    });
 
 
+    var avQuery = new Parse.Query(Kittens);
+    avQuery.find().then(function(results){
+        var sum =0;
+        for (var i =0; i < results.length; ++i){
+        sum += results[i].get('rating');
+    };
+        avScore = (sum / results.length);
+    });
+    console.log(avScore);
 
+
+    // var sum =0;
+    // for (var i =0; i < item.length; ++i){
+    //     sum += item[i].get('rating');
+    // }
+    // var avScore= Number((sum / item.length));
 
     
-//'<div id="starReview">'+ ($("#star").raty('score',rating))+ '</div>'+
 
-    $('ol').append(pastReveiw);
-    //wrap the well div around the raty?
-    
+    var avReview =$('#starAvReview').raty({
+        score: avScore,
+        readOnly: true
+
+    }) 
+
+
+    $('ol').append(well);
+    $(well).find('.ratyStars').prepend(pastReview);
+    $(well).find('.theThumbs').append(thumbsUp, thumbsDown);
+    $(well).append(button);
+    $('#starAvReview').append(avReview);
+    $('#starAvReview').prepend("Average Reviews: ");
 }
 
 getData();
