@@ -8,23 +8,58 @@
 
 body{
     font-size: 16px;
+    font-family: "bebasneue", Georgia, Times, Arial;
+/*    color: #EFEFEF;
+*/
+
 }
 legend{
 	border:0;
 	margin-bottom: 5px;
 }
-
+h1{
+/*	font-size: 100%;*/
+  color: white;
+  text-shadow:
+   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
+   font-size: 100%;
 }
-#productimg{
-    max-width: 95%;
-    border-radius: 5px;
-    margin-bottom: 1em;
-}
 
+#header{
+	min-height: 200px;
+	background-size: 100%;
+	margin-bottom: 1em;
+	background-image: url("../img/kittens.jpg");
+	background-repeat: no-repeat;
+}
+.form-group{
+	margin-bottom: 0px;
+}
+#list{
+	padding-left: 0px;
+}
+#title{
+/*	background-color: #222;
+*/}
+#user-review{
+/*	background-color:#6E0308;
+*/}
+#past-reviews{
+/*	background-color:#222;  
+*/}
 
 /*Change layout for Mobile*/ 
 @media screen and (min-width:768px){
-        body{
-        font-size:20px;
+ 	body{
+    	font-size:20px;
+    }
+    #header{
+    	min-height: 410px;
+    	margin-bottom: 0px;
     }
 
+
+}    
