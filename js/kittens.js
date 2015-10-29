@@ -11,8 +11,6 @@ var Kittens = Parse.Object.extend('Kittens');
 $('#starInput').raty({   
 });
 
-
-
 $('form').submit(function(){
 
     var kittens = new Kittens();
@@ -59,7 +57,7 @@ var addItem = function (item){
     var review = item.get ('reviewText');
     var likes = item.get('likes');
     var dislikes=item.get('dislikes');
-    var avScore = null;
+    var avScore = 0;
     
     //Sets new posts to 0  
     if(likes==undefined){
@@ -105,11 +103,11 @@ var addItem = function (item){
             }});
     });
 
-
+ 
     var avQuery = new Parse.Query(Kittens);
     avQuery.find().then(function(results){
         var sum =0;
-        for (var i =0; i < results.length; ++i){
+         for (var i =0; i < results.length; ++i){
         sum += results[i].get('stars');
     };
         avScore = (sum / results.length);
@@ -119,12 +117,9 @@ var addItem = function (item){
     });
     console.log("Average Score out of Loop: " + avScore);
 
-    
-
     var avReview =$('#starAvReview').raty({
         score: avScore,
         readOnly: true
-
     }) 
 
 
