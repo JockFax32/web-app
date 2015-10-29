@@ -1,16 +1,9 @@
-// JavaScript for CRUD Challenge
-// Check out Bootbox http://bootboxjs.com/
-// Thumbs up and down are glyphicons
-
-
-// Initialize Parse App 
 Parse.initialize('S7SwwjBTgEyZnJjjZ6V9YB5HItXoT3alIxzEQCKi','izqCDsoySYLvJ9nsPlCpwvSxRzMpEgv39FQpMHz3');
 
 var Kittens = Parse.Object.extend('Kittens');
 
 $('#starInput').raty({   
 });
-
 $('form').submit(function(){
 
     var kittens = new Kittens();
@@ -21,7 +14,6 @@ $('form').submit(function(){
     $(this).find('.form-control').each(function(){
         kittens.set($(this).attr('id'),$(this).val())
         $(this).val(''); 
-
     });
 
     kittens.save(null,{
@@ -32,7 +24,7 @@ $('form').submit(function(){
     numStars.raty('stars');
     return false;
 })
-
+// Retreive data from Parse
 var getData = function (){
     var query = new Parse.Query(Kittens);
     query.exists('reviewText','stars');
@@ -66,7 +58,7 @@ var addItem = function (item){
     if (dislikes==undefined){
         dislikes = 0;
     }
-    
+    // Create well and place bootstrap divs for mobile friendly
     var well =$('<div class="well well-sm"><div class ="row"><div class="col-xs-4 ratyStars"/><div class="col-xs-6 header"><h3>'
                 + title +'</h3></div>'+ '<div class="col-xs-2 theThumbs"></div></div>'+
                 '<p>'+review +'</p>'+
@@ -85,7 +77,7 @@ var addItem = function (item){
         });
 
     })
-
+    // Add user ratings
     var thumbsUp = $('<button class ="glyphicon glyphicon-thumbs-up" id="thumbs"></button>');
     thumbsUp.on('click',function(){
         item.increment("likes");
@@ -102,8 +94,7 @@ var addItem = function (item){
                 getData()
             }});
     });
-
- 
+    // Create a new query to find average 
     var avQuery = new Parse.Query(Kittens);
     avQuery.exists('stars');
     avQuery.find().then(function(results){
@@ -112,20 +103,14 @@ var addItem = function (item){
         sum += results[i].get('stars');
     };
         avScore = (sum / results.length);
-        console.log("Sum: "+sum);
-        console.log("Results Length: "+ results.length)
-        console.log("Average Score: " + avScore);
-
         var avReview =$('#starAvReview').raty({
         score: avScore,
         readOnly: true
     }) 
         $('#starAvReview').prepend("Average Reviews: ");
-
-
     });
 
-
+    // Add all elements to the Boostrap well
     $('ol').append(well);
     $(well).find('.ratyStars').prepend(pastReview);
     $(well).find('.theThumbs').append(thumbsUp, thumbsDown);
