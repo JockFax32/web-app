@@ -110,7 +110,7 @@ var addItem = function (item){
     avQuery.find().then(function(results){
         var sum =0;
         for (var i =0; i < results.length; ++i){
-        sum += results[i].get('rating');
+        sum += results[i].get('stars');
     };
         avScore = (sum / results.length);
     });
