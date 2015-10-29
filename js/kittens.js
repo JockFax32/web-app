@@ -59,7 +59,7 @@ var addItem = function (item){
     var review = item.get ('reviewText');
     var likes = item.get('likes');
     var dislikes=item.get('dislikes');
-    var avScore = 0;
+    var avScore = null;
     
     //Sets new posts to 0  
     if(likes==undefined){
@@ -113,15 +113,11 @@ var addItem = function (item){
         sum += results[i].get('stars');
     };
         avScore = (sum / results.length);
+        console.log("Sum: "+sum);
+        console.log("Results Length: "+ results.length)
+        console.log("Average Score: " + avScore);
     });
-    console.log(avScore);
-
-
-    // var sum =0;
-    // for (var i =0; i < item.length; ++i){
-    //     sum += item[i].get('rating');
-    // }
-    // var avScore= Number((sum / item.length));
+    console.log("Average Score out of Loop: " + avScore);
 
     
 
