@@ -105,6 +105,7 @@ var addItem = function (item){
 
  
     var avQuery = new Parse.Query(Kittens);
+    avQuery.exists('stars');
     avQuery.find().then(function(results){
         var sum =0;
          for (var i =0; i < results.length; ++i){
@@ -114,21 +115,22 @@ var addItem = function (item){
         console.log("Sum: "+sum);
         console.log("Results Length: "+ results.length)
         console.log("Average Score: " + avScore);
-    });
-    console.log("Average Score out of Loop: " + avScore);
 
-    var avReview =$('#starAvReview').raty({
+        var avReview =$('#starAvReview').raty({
         score: avScore,
         readOnly: true
     }) 
+        $('#starAvReview').prepend("Average Reviews: ");
+
+
+    });
 
 
     $('ol').append(well);
     $(well).find('.ratyStars').prepend(pastReview);
     $(well).find('.theThumbs').append(thumbsUp, thumbsDown);
     $(well).append(button);
-    $('#starAvReview').append(avReview);
-    $('#starAvReview').prepend("Average Reviews: ");
+
 }
 
 getData();

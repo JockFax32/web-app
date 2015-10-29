@@ -1,25 +1,16 @@
-/*CSS File for CRUD Challenged*/
+
 @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css);
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
-
-/*Red Background #6E0308*/
-/*Gray Background #222 */
-/*Font Color #EFEFEF*/
 
 body{
     font-size: 2em;
     font-family: "bebasneue", Georgia, Times, Arial;
-/*    color: #EFEFEF;
-*/
-
 }
 legend{
 	border:0;
 	margin-bottom: 5px;
 }
 h1{
-/*	font-size: 100%;*/
-  color: white;
   text-shadow:
    -1px -1px 0 #000,  
     1px -1px 0 #000,
@@ -31,27 +22,33 @@ h3{
   margin-top: 0px;
   font-size: 1.5em; 
 }
-
 #thumbs{
   font-size: .75em;
 }
-
 #starReview{
   font-size: .75em;
 }
 #feedback{
-  font-size: .4em;
-}
-
-.jumbotron{
-  padding:0;
-}
-
-.btn-danger{
   font-size: .5em;
 }
-#header{
-  float: right;
+.jumbotron{
+  padding:0;
+  margin: 0;
+  border-bottom: 10;
+  background-color: #D68F7D; 
+}
+#title{
+  background-color: #D39686;
+  padding-top: 1em;  
+}
+#user-review{
+  background-color: #D68F7D;
+}
+#past-reviews{
+  background-color: #D39686;
+}
+.btn-danger{
+  font-size: .5em;
 }
 .form-group{
 	margin-bottom: 0px;
@@ -68,7 +65,6 @@ h3{
     	font-size:2em;
     }
   #feedback{
-    font-size: .6em;
+    font-size: .8em;
   }
- 
 }    
